@@ -24,7 +24,23 @@ const AddCoin = (req, res) => {
 }
 
 //Pais
-CoinsRef.once('value', snapshot)
+
+const SearchCoin = (req,res)=>{
+    
+
+    CoinsRef.once('value', snapshot).then(()=>{
+
+        return res.status(201).send(coin)
+
+    }).catch((err)=>{
+        return res.status(500).send({message: err}) 
+    })
+    
+} 
+
+
+
+
 
 //Nombre, isAvailable
 OrderByChild('name')
@@ -32,5 +48,6 @@ OrderByChild('name')
 
 
 module.exports = {
-    AddCoin
+    AddCoin,
+    SearchCoin
 }
